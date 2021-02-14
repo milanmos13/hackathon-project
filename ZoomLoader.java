@@ -1,15 +1,22 @@
 import java.io.IOException;
+//import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Timer;
+import java.util.TimerTask;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import java.awt.Robot;
 import java.awt.AWTException;
 import java.awt.event.KeyEvent;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
-import java.time.format.DateTimeFormatter;  
-import java.time.LocalDateTime;   
+//import java.util.Scanner;
+import java.time.format.DateTimeFormatter;
+import java.time.LocalDateTime; 
 
 
 public class ZoomLoader extends LoaderGUI {
@@ -39,15 +46,17 @@ public class ZoomLoader extends LoaderGUI {
 	public static void firstLogin() throws IOException, InterruptedException, AWTException {
 		openZoom(0);
 		Thread.sleep(5000);
-		ssoOpener();
+		//ssoOpener();
 		Thread.sleep(5000);
 		loginLoginer();
 	}
 	
-	public static void openZoom(int period) throws IOException {
+	public static void openZoom(int period) throws IOException, AWTException, InterruptedException {
 		if (links.get(period) != null){
 		String test = links.get(period);
 		java.awt.Desktop.getDesktop().browse(java.net.URI.create(test));
+		Thread.sleep(3000);
+		enterPress();
 		}
 	}
 	
@@ -71,7 +80,7 @@ public class ZoomLoader extends LoaderGUI {
 		r.keyRelease(KeyEvent.VK_CONTROL);
 	}
 
-	//open zoom app from link - goes to Rapid Identity
+/*	//open zoom app from link - goes to Rapid Identity
 	public static void ssoOpener() throws AWTException, InterruptedException {	
 		enterPress();
 		Thread.sleep(2000);
@@ -80,7 +89,7 @@ public class ZoomLoader extends LoaderGUI {
 	}
 		enterPress();
 		enterPress();
-	}
+	}*/
 
 	//pastes username and password into RapidId allowing you to log in
 	public static void loginLoginer() throws AWTException, InterruptedException {
@@ -103,11 +112,11 @@ public class ZoomLoader extends LoaderGUI {
 
         Date day = new Date();
         SimpleDateFormat simpleDateformat = new SimpleDateFormat("E"); 
-        if (simpleDateformat.format(day).equals("Mon")){
+        if (simpleDateformat.format(day).equals("Sun")){
         	    	
 			while (true){
-				time.add("9:59");
-	        	time.add("10:39");
+				time.add("02:32");
+	        	time.add("02:37");
 	        	time.add("11:19");
 	        	time.add("11:59");
 	        	time.add("13:14");
@@ -115,9 +124,8 @@ public class ZoomLoader extends LoaderGUI {
 	        	time.add("14:34");    
 				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");  
 				LocalDateTime now = LocalDateTime.now();  
-	
-				//System.out.println(dtf.format(now)); 
 				if (dtf.format(now).equals(time.get(0))) {
+					System.out.println("test");
 					firstLogin();
 					Thread.sleep(60000);
 				}
@@ -131,7 +139,7 @@ public class ZoomLoader extends LoaderGUI {
 			}
         }
         else if (simpleDateformat.format(day).equals("Tues") || simpleDateformat.format(day).equals("Thurs")){
-        	time.add("8:59");
+        	time.add("08:59");
         	time.add("10:24");
         	time.add("12:19");
         	time.add("13:49");        	
@@ -153,7 +161,7 @@ public class ZoomLoader extends LoaderGUI {
 			}
         }
         else if (simpleDateformat.format(day).equals("Wed")){
-        	time.add("9:39");
+        	time.add("09:39");
         	time.add("12:19");
         	time.add("13:49");        	
 			while (true){
@@ -175,7 +183,7 @@ public class ZoomLoader extends LoaderGUI {
         }
         
         else if (simpleDateformat.format(day).equals("Fri")){
-        	time.add("9:39");
+        	time.add("09:39");
         	time.add("11:04");
         	time.add("12:19");
         	time.add("13:49");        	
