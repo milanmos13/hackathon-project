@@ -1,215 +1,183 @@
-import java.io.IOException;
-//import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.awt.EventQueue;
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
-import java.awt.Robot;
+import java.awt.TextArea;
 import java.awt.AWTException;
-import java.awt.event.KeyEvent;
-import java.awt.datatransfer.StringSelection;
-import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
-//import java.util.Scanner;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime; 
+import java.awt.BorderLayout;
+import javax.swing.JTextPane;
+import java.awt.Panel;
+import java.awt.Color;
+import javax.swing.JTextField;
+import java.awt.Label;
+import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.awt.event.ActionEvent;
 
+public class LoaderGUI {
 
-public class ZoomLoader extends LoaderGUI {
-	public static String username;
-	public static String password;
-	public static ArrayList<String> links;
-	public static ArrayList<String> time = new ArrayList<String>();
+	private JFrame frame;
+	private JTextField textFieldName;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField textField_8;
+	
+	public static ArrayList<String> linkks = new ArrayList<String>();
+	public static String unm;
+	public static String pw;
 
-	public ZoomLoader(String un, String pwd, ArrayList<String> l) throws IOException, InterruptedException, AWTException {
-		ZoomLoader.username = un;
-		ZoomLoader.password = pwd;
-		ZoomLoader.links = l;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) throws IOException, AWTException, InterruptedException{
+		
+			
 	}
 	
-	//open zoom link change to method open link
-	public static void main(String[] args) throws IOException, AWTException, InterruptedException {
-		//make sure that perm to open zoom is allowed
-		//main method that runs code
-		LoaderGUI gui = new LoaderGUI();
-		gui.run();
-		Thread.sleep(17000);
-		new ZoomLoader(unm, pw, linkks);
-		dailyZoomOpen();
-	
-	}
-	//method for first time opening zoom which will log you in
-	public static void firstLogin() throws IOException, InterruptedException, AWTException {
-		openZoom(0);
-		Thread.sleep(5000);
-		//ssoOpener();
-		Thread.sleep(5000);
-		loginLoginer();
-	}
-	
-	public static void openZoom(int period) throws IOException, AWTException, InterruptedException {
-		if (links.get(period) != null){
-		String test = links.get(period);
-		java.awt.Desktop.getDesktop().browse(java.net.URI.create(test));
-		Thread.sleep(3000);
-		enterPress();
+	public void run() {
+		try {
+			LoaderGUI window = new LoaderGUI();
+			window.frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
-	
-	//programming different button press/interactions
-	public static void enterPress() throws AWTException {
-		Robot r = new Robot();
-		r.keyPress(KeyEvent.VK_ENTER);
-		r.keyRelease(KeyEvent.VK_ENTER);
+	/**
+	 * Create the application.
+	 */
+	public LoaderGUI() {
+		initialize();
 	}
-	public static void tabPress() throws AWTException {
-		Robot r = new Robot();
-		r.keyPress(KeyEvent.VK_TAB);
-		r.keyRelease(KeyEvent.VK_TAB);
-	}
-	public static void pastePress() throws AWTException, InterruptedException {
-		Robot r = new Robot();
-		r.keyPress(KeyEvent.VK_CONTROL);
-		r.keyPress(KeyEvent.VK_V);
-		Thread.sleep(500);
-		r.keyRelease(KeyEvent.VK_V);
-		r.keyRelease(KeyEvent.VK_CONTROL);
-	}
-//necesary with certain versions of the browser/zoom
-/*	//open zoom app from link - goes to Rapid Identity
-	public static void ssoOpener() throws AWTException, InterruptedException {	
-		enterPress();
-		Thread.sleep(2000);
-		for (int i = 0; i < 4; i++) {
-			tabPress();
-	}
-		enterPress();
-		enterPress();
-	}*/
 
-	//pastes username and password into RapidId allowing you to log in
-	public static void loginLoginer() throws AWTException, InterruptedException {
-		StringSelection userSelection = new StringSelection(username);
-		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-		clipboard.setContents(userSelection, null);
-		Thread.sleep(3000);
-		ZoomLoader.pastePress();
-		ZoomLoader.enterPress();	
-		Thread.sleep(1000);
-		StringSelection passSelection = new StringSelection(password);
-		Clipboard clipboard2 = Toolkit.getDefaultToolkit().getSystemClipboard();
-		clipboard2.setContents(passSelection, null);
-		ZoomLoader.pastePress();
-		ZoomLoader.enterPress();	
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frame = new JFrame();
+		frame.setBounds(100, 100, 634, 457);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		//labels
+		Label Username = new Label("Enter your PAUSD Username:");
+		Username.setBounds(10, 10, 161, 22);
+		frame.getContentPane().add(Username);
+		//labels
+		JLabel linkHeader = new JLabel("List the Zoom links to all of your classes (in order if possible ) :");
+		linkHeader.setBounds(10, 96, 351, 31);
+		frame.getContentPane().add(linkHeader);
+		//labels
+		Label Username_1 = new Label("Enter your PAUSD Password:");
+		Username_1.setBounds(10, 57, 161, 22);
+		frame.getContentPane().add(Username_1);
+		//username field
+		textFieldName = new JTextField();
+		textFieldName.setBounds(177, 12, 125, 20);
+		frame.getContentPane().add(textFieldName);
+		textFieldName.setColumns(10);
+		//password field
+		textField = new JTextField();
+		textField.setBounds(177, 59, 125, 20);
+		frame.getContentPane().add(textField);
+		textField.setColumns(10);
+		//link fields
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(33, 132, 125, 20);
+		frame.getContentPane().add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(33, 163, 125, 20);
+		frame.getContentPane().add(textField_2);
+		
+		textField_3 = new JTextField();
+		textField_3.setColumns(10);
+		textField_3.setBounds(33, 194, 125, 20);
+		frame.getContentPane().add(textField_3);
+		
+		textField_4 = new JTextField();
+		textField_4.setColumns(10);
+		textField_4.setBounds(33, 225, 125, 20);
+		frame.getContentPane().add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setColumns(10);
+		textField_5.setBounds(33, 256, 125, 20);
+		frame.getContentPane().add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.setColumns(10);
+		textField_6.setBounds(33, 287, 125, 20);
+		frame.getContentPane().add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setColumns(10);
+		textField_7.setBounds(33, 318, 125, 20);
+		frame.getContentPane().add(textField_7);
+		//submit button and action
+		JButton btnNewButton = new JButton("Submit All");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				linkks.add(textField_1.getText());
+				linkks.add(textField_2.getText());
+				linkks.add(textField_3.getText());
+				linkks.add(textField_4.getText());
+				linkks.add(textField_5.getText());
+				linkks.add(textField_6.getText());
+				linkks.add(textField_7.getText());
+				
+				unm = textFieldName.getText();
+				pw = textField.getText();
+				
+			}
+		});
+		btnNewButton.setBounds(452, 384, 125, 23);
+		frame.getContentPane().add(btnNewButton);
+		
+		JLabel lblNewLabel = new JLabel("S.E.L.F Link:");
+		lblNewLabel.setBounds(10, 360, 80, 14);
+		frame.getContentPane().add(lblNewLabel);
+		
+		textField_8 = new JTextField();
+		textField_8.setText("");
+		textField_8.setBounds(87, 357, 132, 20);
+		frame.getContentPane().add(textField_8);
+		textField_8.setColumns(10);
+		//numbering of link fields
+		JLabel lblNewLabel_1 = new JLabel("1:");
+		lblNewLabel_1.setBounds(10, 134, 20, 17);
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("2:");
+		lblNewLabel_1_1.setBounds(10, 166, 20, 17);
+		frame.getContentPane().add(lblNewLabel_1_1);
+		
+		JLabel lblNewLabel_1_2 = new JLabel("3:");
+		lblNewLabel_1_2.setBounds(10, 197, 20, 17);
+		frame.getContentPane().add(lblNewLabel_1_2);
+		
+		JLabel lblNewLabel_1_2_1 = new JLabel("4:");
+		lblNewLabel_1_2_1.setBounds(10, 228, 20, 17);
+		frame.getContentPane().add(lblNewLabel_1_2_1);
+		
+		JLabel lblNewLabel_1_2_2 = new JLabel("5:");
+		lblNewLabel_1_2_2.setBounds(10, 259, 20, 17);
+		frame.getContentPane().add(lblNewLabel_1_2_2);
+		
+		JLabel lblNewLabel_1_2_3 = new JLabel("6:");
+		lblNewLabel_1_2_3.setBounds(10, 290, 20, 17);
+		frame.getContentPane().add(lblNewLabel_1_2_3);
+		
+		JLabel lblNewLabel_1_2_4 = new JLabel("7:");
+		lblNewLabel_1_2_4.setBounds(10, 321, 20, 17);
+		frame.getContentPane().add(lblNewLabel_1_2_4);
 	}
-	
-	//Method that runs through all code and checks the time and date to open certain links
-	public static void dailyZoomOpen() throws IOException, InterruptedException, AWTException{
-
-        Date day = new Date();
-        SimpleDateFormat simpleDateformat = new SimpleDateFormat("E"); 
-        if (simpleDateformat.format(day).equals("Mon")){
-        	    	
-			while (true){
-				time.add("09:59");
-	        	time.add("10:39");
-	        	time.add("11:19");
-	        	time.add("11:59");
-	        	time.add("13:14");
-	        	time.add("13:54");
-	        	time.add("14:34");    
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");  
-				LocalDateTime now = LocalDateTime.now();  
-				if (dtf.format(now).equals(time.get(0))) {
-					System.out.println("test");
-					firstLogin();
-					Thread.sleep(60000);
-				}
-				for (int i = 1; i < 7; i++) {
-					if (dtf.format(now).equals(time.get(i))) {
-						openZoom(i);
-						Thread.sleep(60000);
-					}
-				}
-				time.clear();
-			}
-        }
-        else if (simpleDateformat.format(day).equals("Tues") || simpleDateformat.format(day).equals("Thurs")){
-        	time.add("08:59");
-        	time.add("10:24");
-        	time.add("12:19");
-        	time.add("13:49");        	
-			while (true){
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");  
-				LocalDateTime now = LocalDateTime.now();  
-				System.out.println(dtf.format(now)); 
-				if (dtf.format(now).equals(time.get(0))) {
-					firstLogin();
-					Thread.sleep(60000);
-				}
-				for (int i = 1; i < 4; i++) {
-					if (dtf.format(now) == time.get(i)) {
-						openZoom(i);
-						Thread.sleep(60000);
-					}
-				}
-				time.clear();
-			}
-        }
-        else if (simpleDateformat.format(day).equals("Wed")){
-        	time.add("09:39");
-        	time.add("12:19");
-        	time.add("13:49");        	
-			while (true){
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");  
-				LocalDateTime now = LocalDateTime.now();  
-				System.out.println(dtf.format(now)); 
-				if (dtf.format(now).equals(time.get(0))) {
-					firstLogin();
-					Thread.sleep(60000);
-				}
-				for (int i = 1; i < 3; i++) {
-					if (dtf.format(now).equals(time.get(i))) {
-						openZoom(i+4);
-						Thread.sleep(60000);
-					}
-				}
-				time.clear();
-			}
-        }
-        
-        else if (simpleDateformat.format(day).equals("Fri")){
-        	time.add("09:39");
-        	time.add("11:04");
-        	time.add("12:19");
-        	time.add("13:49");        	
-			while (true){
-				DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm");  
-				LocalDateTime now = LocalDateTime.now();  
-				System.out.println(dtf.format(now)); 
-				if (dtf.format(now).equals(time.get(0))) {
-					firstLogin();
-					Thread.sleep(60000);
-				}
-				if (dtf.format(now).equals(time.get(7))) {
-					openZoom(8);
-					Thread.sleep(60000);
-				}
-				for (int i = 2; i < 3; i++) {
-					if (dtf.format(now).equals(time.get(i))) {
-						openZoom(i+4);
-						Thread.sleep(60000);
-					}
-				}
-				time.clear();
-			}
-        }
-        
-
-
-	}
-	}
+}
