@@ -1,5 +1,4 @@
 import java.io.IOException;
-//import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -9,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
-//import java.util.Scanner;
 import java.time.format.DateTimeFormatter;  
 import java.time.LocalDateTime;   
 
@@ -105,7 +103,7 @@ public class ZoomLoader extends LoaderGUI {
 
         Date day = new Date();
         SimpleDateFormat simpleDateformat = new SimpleDateFormat("E"); 
-        if (simpleDateformat.format(day).equals("Sun")){
+        if (simpleDateformat.format(day).equals("Mon")){
         	    	
 			while (true){
 				time.add("9:59");
