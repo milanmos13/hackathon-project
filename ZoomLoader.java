@@ -1,5 +1,4 @@
 import java.io.IOException;
-//import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -14,7 +13,6 @@ import java.awt.event.KeyEvent;
 import java.awt.datatransfer.StringSelection;
 import java.awt.Toolkit;
 import java.awt.datatransfer.Clipboard;
-//import java.util.Scanner;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime; 
 
